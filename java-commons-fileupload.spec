@@ -1,6 +1,7 @@
 %define		subver		rc1
 
-Summary:	Jakarta Commons FileUpload
+Summary:	Jakarta Commons FileUpload component for Java servlets
+Summary(pl):	Komponent Jakarta Commons FileUpload dla serwletów Javy
 Name:		jakarta-commons-fileupload
 Version:	1.0
 Release:	0.%{subver}.1
@@ -20,10 +21,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_javalibdir	/usr/share/java
 
 %description
-Jakarta Commons FileUpload.
+The FileUpload component provides a simple yet flexible means of
+adding support for multipart file upload functionality to servlets and
+web applications.
 
 %description -l pl
-Jakarta Commons FileUpload.
+Komponent FileUpload udostêpnia proste, ale elastycze ¶rodki do
+dodawania funkcjonalno¶ci uploadu wieloczê¶ciowych plików do serwletów
+i aplikacji WWW.
 
 %package doc
 Summary:	Jakarta Commons FileUpload documentation
