@@ -26,7 +26,7 @@ adding support for multipart file upload functionality to servlets and
 web applications.
 
 %description -l pl
-Komponent FileUpload udostêpnia proste, ale elastycze ¶rodki do
+Komponent FileUpload udostêpnia proste, ale elastyczne ¶rodki do
 dodawania funkcjonalno¶ci uploadu wieloczê¶ciowych plików do serwletów
 i aplikacji WWW.
 
