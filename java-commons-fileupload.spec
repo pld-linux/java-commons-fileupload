@@ -18,7 +18,7 @@ Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javalibdir	/usr/share/java
+%define		_javalibdir	%{_datadir}/java
 
 %description
 The FileUpload component provides a simple yet flexible means of
