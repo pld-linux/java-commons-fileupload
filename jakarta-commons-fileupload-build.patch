@@ -1,0 +1,31 @@
+diff -Nur commons-fileupload-1.0-rc1.orig/build.xml commons-fileupload-1.0-rc1.chng/build.xml
+--- commons-fileupload-1.0-rc1.orig/build.xml	Wed Jun  4 07:12:02 2003
++++ commons-fileupload-1.0-rc1.chng/build.xml	Wed Jun 25 13:18:05 2003
+@@ -30,7 +30,8 @@
+       </equals>
+     </condition>
+   </target>
+-  <target name="compile" description="o Compile the code" depends="get-deps">
++  <!-- <target name="compile" description="o Compile the code" depends="get-deps"> -->
++  <target name="compile" description="o Compile the code" depends="init">
+     <mkdir dir="${classesdir}">
+     </mkdir>
+     <javac destdir="${classesdir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
+@@ -73,7 +74,7 @@
+   <target name="internal-test" depends="compile-tests">
+     <mkdir dir="${testreportdir}">
+     </mkdir>
+-    <junit dir="./" failureproperty="test.failure" printSummary="yes" fork="true" haltonerror="true">
++<!--    <junit dir="./" failureproperty="test.failure" printSummary="yes" fork="true" haltonerror="true">
+       <sysproperty key="basedir" value=".">
+       </sysproperty>
+       <formatter type="xml">
+@@ -96,7 +97,7 @@
+           </include>
+         </fileset>
+       </batchtest>
+-    </junit>
++    </junit> -->
+   </target>
+   <target name="compile-tests" depends="compile">
+     <mkdir dir="${testclassesdir}">
