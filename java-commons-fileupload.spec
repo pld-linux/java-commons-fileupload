@@ -8,7 +8,7 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
 # Source0-md5:	c6fa0cc10e18cffa8c479c6cb61914b8
 URL:		http://jakarta.apache.org/commons/fileupload/
-BuildRequires:	jakarta-ant(junit) >= 1.5
+BuildRequires:	ant(junit) >= 1.5
 BuildRequires:	jakarta-servletapi >= 2.3
 BuildRequires:	junit >= 3.8.1
 Requires:	jre
