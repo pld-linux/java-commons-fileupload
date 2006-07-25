@@ -10,6 +10,7 @@ Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fi
 URL:		http://jakarta.apache.org/commons/fileupload/
 BuildRequires:	ant-junit >= 1.5
 BuildRequires:	jakarta-servletapi >= 2.3
+BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
 Requires:	jre
 BuildArch:	noarch
@@ -40,8 +41,9 @@ Dokumentacja do Jakarta Commons FileUpload.
 %setup -q -n commons-fileupload-%{version}
 
 %build
+export JAVA_HOME="%{java_home}"
 # for tests
-export CLASSPATH=%{_javadir}/servlet.jar
+export CLASSPATH="`build-classpath servlet junit`"
 ant dist \
 	-Dnoget=1
 
