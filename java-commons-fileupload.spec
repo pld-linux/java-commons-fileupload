@@ -2,7 +2,7 @@ Summary:	Jakarta Commons FileUpload component for Java servlets
 Summary(pl):	Komponent Jakarta Commons FileUpload dla serwletów Javy
 Name:		jakarta-commons-fileupload
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
 
 install dist/*.jar $RPM_BUILD_ROOT%{_javadir}
-ln -sf commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-fileupload.jar
+ln -sf commons-fileupload-1.2-SNAPSHOT.jar $RPM_BUILD_ROOT%{_javadir}/commons-fileupload.jar
 
 %clean
 rm -rf $RPM_BUILD_ROOT
