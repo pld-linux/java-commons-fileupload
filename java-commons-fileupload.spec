@@ -1,5 +1,5 @@
 Summary:	Jakarta Commons FileUpload component for Java servlets
-Summary(pl):	Komponent Jakarta Commons FileUpload dla serwletów Javy
+Summary(pl.UTF-8):   Komponent Jakarta Commons FileUpload dla serwletÃ³w Javy
 Name:		jakarta-commons-fileupload
 Version:	1.1.1
 Release:	2
@@ -21,20 +21,20 @@ The FileUpload component provides a simple yet flexible means of
 adding support for multipart file upload functionality to servlets and
 web applications.
 
-%description -l pl
-Komponent FileUpload udostêpnia proste, ale elastyczne ¶rodki do
-dodawania funkcjonalno¶ci uploadu wieloczê¶ciowych plików do serwletów
+%description -l pl.UTF-8
+Komponent FileUpload udostÄ™pnia proste, ale elastyczne Å›rodki do
+dodawania funkcjonalnoÅ›ci uploadu wieloczÄ™Å›ciowych plikÃ³w do serwletÃ³w
 i aplikacji WWW.
 
 %package doc
 Summary:	Jakarta Commons FileUpload documentation
-Summary(pl):	Dokumentacja do Jakarta Commons FileUpload
+Summary(pl.UTF-8):   Dokumentacja do Jakarta Commons FileUpload
 Group:		Development/Languages/Java
 
 %description doc
 Jakarta Commons FileUpload documentation.
 
-%description doc -l pl
+%description doc -l pl.UTF-8
 Dokumentacja do Jakarta Commons FileUpload.
 
 %prep
