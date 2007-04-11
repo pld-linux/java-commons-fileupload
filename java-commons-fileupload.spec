@@ -2,13 +2,14 @@ Summary:	Jakarta Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Jakarta Commons FileUpload dla serwletów Javy
 Name:		jakarta-commons-fileupload
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
 # Source0-md5:	d003445638bc272512112ace08d63bbb
 URL:		http://jakarta.apache.org/commons/fileupload/
 BuildRequires:	ant-junit >= 1.5
+BuildRequires:	jakarta-commons-io
 BuildRequires:	jakarta-servletapi >= 2.3
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
@@ -43,7 +44,7 @@ Dokumentacja do Jakarta Commons FileUpload.
 %build
 export JAVA_HOME="%{java_home}"
 # for tests
-export CLASSPATH="`build-classpath servlet junit`"
+export CLASSPATH="`build-classpath servlet junit commons-io`"
 ant dist \
 	-Dnoget=1
 
