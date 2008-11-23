@@ -4,14 +4,18 @@
 #      [get] To: $HOME/.maven/repository/javax.servlet/jars/servlet-api-2.3.jar
 #      [get] To: $HOME/.maven/repository/javax.portlet/jars/portlet-api-1.0.jar
 #      [get] To: $HOME/.maven/repository/junit/jars/junit-3.8.1.jar
+#
+# Conditional build:
+%bcond_without	javadoc		# don't build javadoc
 
+%include	/usr/lib/rpm/macros.java
 Summary:	Jakarta Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Jakarta Commons FileUpload dla serwletów Javy
-Name:		jakarta-commons-fileupload
+Name:		java-commons-fileupload
 Version:	1.1.1
 Release:	3
 License:	Apache
-Group:		Development/Languages/Java
+Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
 # Source0-md5:	d003445638bc272512112ace08d63bbb
 URL:		http://jakarta.apache.org/commons/fileupload/
@@ -20,7 +24,9 @@ BuildRequires:	jakarta-commons-io
 BuildRequires:	jakarta-servletapi >= 2.3
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
+BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	jpackage-utils
 Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,7 +59,9 @@ Dokumentacja do Jakarta Commons FileUpload.
 
 %build
 required_jars="junit servlet commons-io"
-export CLASSPATH=$(/usr/bin/build-classpath $required_jars)
+CLASSPATH=$(build-classpath $required_jars)
+export CLASSPATH
+
 %if 0
 cat > build.properties <<EOF
 noget=1
@@ -75,26 +83,25 @@ cp -a dist/commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
 ln -s commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-fileupload.jar
 
 # javadoc
+%if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -a dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-rm -f %{_javadocdir}/%{name}
-ln -s %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ "$1" = "0" ]; then
-	rm -f %{_javadocdir}/%{name}
-fi
+ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
 %doc dist/*.txt
 %{_javadir}/*.jar
 
+%if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
+%endif
