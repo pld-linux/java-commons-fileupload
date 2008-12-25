@@ -9,16 +9,16 @@
 %bcond_without	javadoc		# don't build javadoc
 
 %include	/usr/lib/rpm/macros.java
-Summary:	Jakarta Commons FileUpload component for Java servlets
-Summary(pl.UTF-8):	Komponent Jakarta Commons FileUpload dla serwletów Javy
+Summary:	Commons FileUpload component for Java servlets
+Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
 Version:	1.1.1
 Release:	3
 License:	Apache
 Group:		Libraries/Java
-Source0:	http://www.apache.org/dist/jakarta/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
+Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
 # Source0-md5:	d003445638bc272512112ace08d63bbb
-URL:		http://jakarta.apache.org/commons/fileupload/
+URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
 BuildRequires:	jakarta-commons-io
 BuildRequires:	jakarta-servletapi >= 2.3
@@ -42,17 +42,17 @@ dodawania funkcjonalności uploadu wieloczęściowych plików do serwletów
 i aplikacji WWW.
 
 %package javadoc
-Summary:	Jakarta Commons FileUpload documentation
-Summary(pl.UTF-8):	Dokumentacja do Jakarta Commons FileUpload
+Summary:	Commons FileUpload documentation
+Summary(pl.UTF-8):	Dokumentacja do Commons FileUpload
 Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	jakarta-commons-fileupload-doc
 
 %description javadoc
-Jakarta Commons FileUpload documentation.
+Commons FileUpload documentation.
 
 %description javadoc -l pl.UTF-8
-Dokumentacja do Jakarta Commons FileUpload.
+Dokumentacja do Commons FileUpload.
 
 %prep
 %setup -q -n commons-fileupload-%{version}
