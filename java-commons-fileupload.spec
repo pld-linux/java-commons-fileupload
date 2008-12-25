@@ -28,6 +28,8 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
 Requires:	jre
+Provides:	jakarta-commons-fileupload
+Obsoletes:	jakarta-commons-fileupload
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +48,9 @@ Summary:	Commons FileUpload documentation
 Summary(pl.UTF-8):	Dokumentacja do Commons FileUpload
 Group:		Documentation
 Requires:	jpackage-utils
+Provides:	jakarta-commons-fileupload-javadoc
 Obsoletes:	jakarta-commons-fileupload-doc
+Obsoletes:	jakarta-commons-fileupload-javadoc
 
 %description javadoc
 Commons FileUpload documentation.
