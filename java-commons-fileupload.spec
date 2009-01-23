@@ -20,8 +20,8 @@ Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload
 # Source0-md5:	d003445638bc272512112ace08d63bbb
 URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
-BuildRequires:	jakarta-commons-io
-BuildRequires:	jakarta-servletapi >= 2.3
+BuildRequires:	java-commons-io
+BuildRequires:	servletapi >= 2.3
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
 BuildRequires:	rpm-javaprov
