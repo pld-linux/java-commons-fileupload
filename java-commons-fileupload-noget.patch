@@ -1,0 +1,20 @@
+--- commons-fileupload-1.1.1/build.xml~	2009-03-15 01:37:55.000000000 +0100
++++ commons-fileupload-1.1.1/build.xml	2009-03-15 01:39:57.000000000 +0100
+@@ -70,7 +70,7 @@
+       </and>
+     </condition>
+   </target>
+-  <target name="compile" description="o Compile the code" depends="get-deps">
++  <target name="compile" description="o Compile the code">
+     <mkdir dir="${classesdir}">
+     </mkdir>
+     <javac destdir="${classesdir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
+@@ -167,7 +167,7 @@
+       </fileset>
+     </copy>
+   </target>
+-  <target name="javadoc" description="o Generate javadoc" depends="get-deps">
++  <target name="javadoc" description="o Generate javadoc">
+     <mkdir dir="${javadocdir}">
+     </mkdir>
+     <tstamp>
