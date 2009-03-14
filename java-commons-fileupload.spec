@@ -1,14 +1,10 @@
-# TODO
-# - make it not to download jar deps to ~/.maven:
-#      [get] To: $HOME/.maven/repository/commons-io/jars/commons-io-1.1.jar
-#      [get] To: $HOME/.maven/repository/javax.servlet/jars/servlet-api-2.3.jar
-#      [get] To: $HOME/.maven/repository/javax.portlet/jars/portlet-api-1.0.jar
-#      [get] To: $HOME/.maven/repository/junit/jars/junit-3.8.1.jar
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
 
 %include	/usr/lib/rpm/macros.java
+
+%define		srcname commons-fileupload
 Summary:	Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
@@ -18,6 +14,7 @@ License:	Apache
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
 # Source0-md5:	d003445638bc272512112ace08d63bbb
+Patch0:		%{name}-noget.patch
 URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
 BuildRequires:	java-commons-io
@@ -26,8 +23,9 @@ BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	java-commons-io
 Requires:	jpackage-utils
-Requires:	jre
+Requires:	servletapi >= 2.3
 Provides:	jakarta-commons-fileupload
 Obsoletes:	jakarta-commons-fileupload
 BuildArch:	noarch
@@ -60,23 +58,16 @@ Dokumentacja do Commons FileUpload.
 
 %prep
 %setup -q -n commons-fileupload-%{version}
+%patch0 -p1
 
 %build
 required_jars="junit servlet commons-io"
 CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
-%if 0
-cat > build.properties <<EOF
-noget=1
-final.name=commons-fileupload-%{version}.jar
-build.sysclasspath=$CLASSPATH
-EOF
-%endif
-
 %ant dist \
-	-Dfinal.name=commons-fileupload-%{version} \
-	-Dnoget=1 \
+	-Dbuild.compiler=extJavac \
+	-Dfinal.name=commons-fileupload-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -88,16 +79,16 @@ ln -s commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-fileu
 
 # javadoc
 %if %{with javadoc}
-install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -a dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+cp -a dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 %endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
+ln -nfs %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
@@ -107,6 +98,6 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
-%ghost %{_javadocdir}/%{name}
+%{_javadocdir}/%{srcname}-%{version}
+%ghost %{_javadocdir}/%{srcname}
 %endif
