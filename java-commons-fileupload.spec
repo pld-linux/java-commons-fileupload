@@ -21,12 +21,14 @@ BuildRequires:	java-commons-io
 BuildRequires:	servletapi >= 2.3
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
+BuildRequires:	portletapi = 1.0
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	servletapi >= 2.4
 Requires:	java-commons-io
 Requires:	jpackage-utils
-Requires:	servletapi >= 2.4
 Requires:	portletapi = 1.0
+Requires:	servletapi >= 2.4
 Provides:	jakarta-commons-fileupload
 Obsoletes:	jakarta-commons-fileupload
 BuildArch:	noarch
