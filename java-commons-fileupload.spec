@@ -107,7 +107,6 @@ ln -nfs %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
-%doc dist/*.txt
 %{_javadir}/*.jar
 
 %if %{with javadoc}
