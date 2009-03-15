@@ -1,3 +1,6 @@
+# TODO:
+# - tests fails, when build with servletapi built on th builders.
+# - everything is ok, when build with servletapi built on my laptop. WTF???
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
@@ -9,7 +12,7 @@ Summary:	Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
 Version:	1.2.1
-Release:	1
+Release:	0.1
 License:	Apache
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
