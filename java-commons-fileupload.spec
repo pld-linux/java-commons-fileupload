@@ -4,6 +4,7 @@
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
+%bcond_with	java_sun	# use java_sun jdk
 
 %include	/usr/lib/rpm/macros.java
 
@@ -22,6 +23,8 @@ URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
 BuildRequires:	java-commons-io
 BuildRequires:	servletapi >= 2.3
+%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
+%{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	jpackage-utils
 BuildRequires:	junit >= 3.8.1
 BuildRequires:	portletapi = 1.0
@@ -71,17 +74,20 @@ required_jars="junit portletapi10 servlet commons-io"
 CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
-%ant dist \
-	-Dbuild.compiler=extJavac \
+%ant jar \
+	%{!?with_java_sun:-Dbuild.compiler=extJavac} \
 	-Dbuild.sysclasspath=first \
 	-Dfinal.name=commons-fileupload-%{version}
+
+%{?with_javadoc:%ant jar -Dfinal.name=commons-fileupload-%{version}}
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
 
 # install jars
-cp -a dist/commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
+cp -a target/commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}
 ln -s commons-fileupload-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/commons-fileupload.jar
 
 # javadoc
