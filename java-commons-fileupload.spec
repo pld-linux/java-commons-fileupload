@@ -8,12 +8,12 @@
 Summary:	Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
-Version:	1.1.1
-Release:	4
+Version:	1.2.1
+Release:	1
 License:	Apache
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
-# Source0-md5:	d003445638bc272512112ace08d63bbb
+# Source0-md5:	c2bdb9264aec564e3f4fbbdf4344a844
 Patch0:		%{name}-noget.patch
 URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
@@ -25,7 +25,8 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	java-commons-io
 Requires:	jpackage-utils
-Requires:	servletapi >= 2.3
+Requires:	servletapi >= 2.4
+Requires:	portletapi = 1.0
 Provides:	jakarta-commons-fileupload
 Obsoletes:	jakarta-commons-fileupload
 BuildArch:	noarch
@@ -57,11 +58,11 @@ Commons FileUpload documentation.
 Dokumentacja do Commons FileUpload.
 
 %prep
-%setup -q -n commons-fileupload-%{version}
+%setup -q -n commons-fileupload-%{version}-src
 %patch0 -p1
 
 %build
-required_jars="junit servlet commons-io"
+required_jars="junit portletapi10 servlet commons-io"
 CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
