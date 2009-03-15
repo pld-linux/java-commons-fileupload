@@ -73,6 +73,7 @@ export CLASSPATH
 
 %ant dist \
 	-Dbuild.compiler=extJavac \
+	-Dbuild.sysclasspath=first \
 	-Dfinal.name=commons-fileupload-%{version}
 
 %install
