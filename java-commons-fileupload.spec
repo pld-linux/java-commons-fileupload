@@ -79,8 +79,10 @@ export CLASSPATH
 	-Dbuild.sysclasspath=first \
 	-Dfinal.name=commons-fileupload-%{version}
 
-%{?with_javadoc:%ant jar -Dfinal.name=commons-fileupload-%{version}}
-
+%if %{with javadoc}
+%ant javadoc \
+	-Dfinal.name=commons-fileupload-%{version}
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
