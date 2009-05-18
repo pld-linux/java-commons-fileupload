@@ -4,7 +4,11 @@
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
-%bcond_with	java_sun	# use java_sun jdk
+%if "%{pld_release}" == "ti"
+%bcond_without	java_sun	# build with gcj
+%else
+%bcond_with	java_sun	# build with java-sun
+%endif
 
 %include	/usr/lib/rpm/macros.java
 
@@ -74,7 +78,6 @@ CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
 %ant jar \
-	%{!?with_java_sun:-Dbuild.compiler=extJavac} \
 	-Dbuild.sysclasspath=first \
 	-Dfinal.name=commons-fileupload-%{version}
 
