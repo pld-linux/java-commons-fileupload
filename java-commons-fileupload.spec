@@ -25,19 +25,19 @@ Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload
 Patch0:		%{name}-noget.patch
 URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
+BuildRequires:	java(Portlet) = 1.0
+BuildRequires:	java(Servlet) >= 2.4
 BuildRequires:	java-commons-io
 %{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
+BuildRequires:	java-junit >= 3.8.1
 %{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	jpackage-utils
-BuildRequires:	junit >= 3.8.1
-BuildRequires:	portletapi = 1.0
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-BuildRequires:	servletapi >= 2.4
+Requires:	java(Portlet) = 1.0
+Requires:	java(Servlet) >= 2.4
 Requires:	java-commons-io
 Requires:	jpackage-utils
-Requires:	portletapi = 1.0
-Requires:	servletapi >= 2.4
 Provides:	jakarta-commons-fileupload
 Obsoletes:	jakarta-commons-fileupload
 BuildArch:	noarch
@@ -73,9 +73,8 @@ Dokumentacja do Commons FileUpload.
 %patch0 -p1
 
 %build
-required_jars="junit portletapi10 servlet commons-io"
+required_jars="junit portlet-api-1.0 servlet-api commons-io"
 CLASSPATH=$(build-classpath $required_jars)
-export CLASSPATH
 
 %ant jar \
 	-Dbuild.sysclasspath=first \
