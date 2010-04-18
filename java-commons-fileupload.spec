@@ -4,11 +4,6 @@
 #
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
 
 %include	/usr/lib/rpm/macros.java
 
@@ -25,17 +20,16 @@ Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload
 Patch0:		%{name}-noget.patch
 URL:		http://commons.apache.org/fileupload/
 BuildRequires:	ant-junit >= 1.5
-BuildRequires:	java(Portlet) = 1.0
-BuildRequires:	java(Servlet) >= 2.4
+BuildRequires:	java(portlet) = 1.0
+BuildRequires:	java(servlet) >= 2.4
 BuildRequires:	java-commons-io
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
 BuildRequires:	java-junit >= 3.8.1
-%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	java(Portlet) = 1.0
-Requires:	java(Servlet) >= 2.4
+Requires:	java(portlet) = 1.0
+Requires:	java(servlet) >= 2.4
 Requires:	java-commons-io
 Requires:	jpackage-utils
 Provides:	jakarta-commons-fileupload
