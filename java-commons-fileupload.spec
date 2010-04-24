@@ -12,7 +12,7 @@ Summary:	Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
 Version:	1.2.1
-Release:	2
+Release:	3
 License:	Apache v2
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
