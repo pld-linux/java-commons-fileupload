@@ -63,7 +63,7 @@ Dokumentacja do Commons FileUpload.
 
 %prep
 %setup -q -n commons-fileupload-%{version}-src
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 required_jars="junit portlet-api-1.0 servlet-api commons-io"
