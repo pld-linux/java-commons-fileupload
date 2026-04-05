@@ -5,13 +5,15 @@
 # Conditional build:
 %bcond_without	javadoc		# don't build javadoc
 
+%{?use_default_jdk:%use_default_jdk 8}
+
 
 %define		srcname commons-fileupload
 Summary:	Commons FileUpload component for Java servlets
 Summary(pl.UTF-8):	Komponent Commons FileUpload dla serwletów Javy
 Name:		java-commons-fileupload
 Version:	1.2.1
-Release:	3
+Release:	4
 License:	Apache v2
 Group:		Libraries/Java
 Source0:	http://www.apache.org/dist/commons/fileupload/source/commons-fileupload-%{version}-src.tar.gz
@@ -23,10 +25,10 @@ BuildRequires:	java(portlet) = 1.0
 BuildRequires:	java(servlet) >= 2.4
 BuildRequires:	java-commons-io
 BuildRequires:	java-junit >= 3.8.1
-BuildRequires:	jdk
+%buildrequires_jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.556
 Requires:	java(portlet) = 1.0
 Requires:	java(servlet) >= 2.4
 Requires:	java-commons-io
